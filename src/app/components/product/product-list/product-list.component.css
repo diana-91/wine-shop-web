@@ -1,0 +1,13 @@
+.product {
+  margin: 10px;
+  text-align: center;
+}
+
+.product p {
+  color: red;
+}
+
+.product img {
+  height: 250px;
+  width: 250px;
+}

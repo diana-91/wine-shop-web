@@ -1,3 +1,63 @@
-<p>
-  login works!
-</p>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Entrar</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+        <form (ngSubmit)="onSubmitLogin(loginForm)" #loginForm="ngForm">
+          <div class="form-group" [class.has-error]="email.errors && email.touched">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-user"></i>
+              </span>
+              <input type="text" name="email" class="form-control" placeholder="Email" [(ngModel)]="user.email" #email="ngModel" required email>
+            </div>
+            <label class="control-label" *ngIf="email.errors && email.touched">
+              <ul>
+                <li *ngIf="email.errors.required">El campo es obligatorio</li>
+                <li *ngIf="email.errors.email">Formato no válido</li>
+              </ul>
+            </label>
+          </div>
+
+          <div class="form-group" [class.has-error]="password.errors && password.touched">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-lock"></i>
+              </span>
+              <input type="password" name="password" class="form-control" placeholder="Contraseña" [(ngModel)]="user.password" #password="ngModel" required>
+            </div>
+            <label class="control-label" *ngIf="password.errors && password.touched">
+              <ul>
+                <li *ngIf="password.errors.required">El campo es obligatorio</li>
+              </ul>
+            </label>
+          </div>
+
+          <div class="form-group" class="has-error" *ngIf="apiError">
+            <label class="control-label">
+              {{ apiError }}
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-block btn-primary" [disabled]="!loginForm.valid">Entrar</button>
+          </div>
+        </form>
+
+  <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    <hr>
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        ¿No tienes cuenta?
+        <a [routerLink]="['/signup']"> Regístrate </a>
+      </div>
+    </div>
+  </div>
+</div>
+</ng-template>
+
+<a (click)="openModal(template)">Login</a>

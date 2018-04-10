@@ -1,0 +1,20 @@
+<div *ngIf="product">
+  <div class="img-thumbnail imageProduct left">
+    <img [src]="product.image">
+  </div>
+
+  <div>
+    <h4>{{product.name}}</h4>
+    <p>{{product.description}}</p>
+  </div>
+
+  <div class="right">
+    <form (ngSubmit)="onSubmitOrder(orderForm)" #orderForm>
+      <label>Cantidad:</label>
+      <input type="number" class="form-control" >
+      <div class="form-actions">
+        <button type="submit" class="btn btn-block btn-primary">Comprar</button>
+      </div>
+    </form>
+  </div>
+</div>

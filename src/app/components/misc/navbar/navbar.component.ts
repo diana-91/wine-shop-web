@@ -4,6 +4,7 @@ import { User } from './../../../shared/models/user.model';
 import { SessionService } from './../../../shared/services/session.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -13,6 +14,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   private user: User;
   private userSubscription: Subscription;
+
 
   constructor(
     private router: Router,
@@ -31,8 +33,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   onClickLogout() {
     this.sessionService.logout()
       .subscribe(() => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/products']);
       });
   }
+
 
 }

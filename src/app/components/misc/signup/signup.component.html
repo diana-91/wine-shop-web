@@ -1,3 +1,121 @@
-<p>
-  signup works!
-</p>
+<ng-template #template>
+
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Regístrate</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmitSignup(signupForm)" #signupForm="ngForm">
+        <div class="form-group" [class.has-error]="email.errors && email.touched">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-user"></i>
+            </span>
+            <input type="text" name="email" class="form-control" placeholder="Email" [(ngModel)]="user.email" #email="ngModel" required email>
+          </div>
+          <label class="control-label" *ngIf="email.errors && email.touched">
+            <ul>
+              <li *ngIf="email.errors.required">El campo es obligatorio</li>
+              <li *ngIf="email.errors.email">Formato no válido</li>
+            </ul>
+          </label>
+        </div>
+
+        <div class="form-group" [class.has-error]="password.errors && password.touched">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-lock"></i>
+            </span>
+            <input type="password" name="password" class="form-control" placeholder="Contraseña" [(ngModel)]="user.password" #password="ngModel" required>
+          </div>
+          <label class="control-label" *ngIf="password.errors && password.touched">
+            <ul>
+              <li *ngIf="password.errors.required">El campo es obligatorio</li>
+            </ul>
+          </label>
+        </div>
+
+        <div class="form-group" [class.has-error]="name.errors && name.touched">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-user"></i>
+            </span>
+            <input type="text" name="name" class="form-control" placeholder="Nombre" [(ngModel)]="user.name" #name="ngModel" required>
+          </div>
+          <label class="control-label" *ngIf="name.errors && name.touched">
+            <ul>
+              <li *ngIf="name.errors.required">El campo es obligatorio</li>
+            </ul>
+          </label>
+        </div>
+
+        <div class="form-group" [class.has-error]="lastname.errors && lastname.touched">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-user"></i>
+            </span>
+            <input type="text" name="lastname" class="form-control" placeholder="Apellidos" [(ngModel)]="user.lastname" #lastname="ngModel" required>
+          </div>
+          <label class="control-label" *ngIf="lastname.errors && lastname.touched">
+            <ul>
+              <li *ngIf="lastname.errors.required">El campo es obligatorio</li>
+            </ul>
+          </label>
+        </div>
+
+        <div class="form-group" [class.has-error]="telephone.errors && telephone.touched">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-phone"></i>
+            </span>
+            <input type="text" name="telephone" class="form-control" placeholder="Teléfono" [(ngModel)]="user.telephone" #telephone="ngModel" >
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="address.errors && address.touched">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-address-book"></i>
+            </span>
+            <input type="text" name="address" class="form-control" placeholder="Dirección" [(ngModel)]="user.address" #address="ngModel" required>
+          </div>
+          <label class="control-label" *ngIf="address.errors && address.touched">
+            <ul>
+              <li *ngIf="address.errors.required">El campo es obligatorio</li>
+            </ul>
+          </label>
+        </div>
+
+        <div class="form-group" [class.has-error]="location.errors && location.touched">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-location-arrow"></i>
+            </span>
+            <input type="text" name="location" class="form-control" placeholder="Ciudad" [(ngModel)]="user.location" #location="ngModel" required>
+          </div>
+          <label class="control-label" *ngIf="location.errors && location.touched">
+            <ul>
+              <li *ngIf="location.errors.required">El campo es obligatorio</li>
+            </ul>
+          </label>
+        </div>
+
+        <div class="form-group" class="has-error" *ngIf="apiError">
+          <label class="control-label">
+            {{ apiError }}
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-block btn-primary" [disabled]="!signupForm.valid">Entrar</button>
+        </div>
+      </form>
+    </div>
+</ng-template>
+
+
+
+<a (click)="openModal(template)">Regístrate</a>

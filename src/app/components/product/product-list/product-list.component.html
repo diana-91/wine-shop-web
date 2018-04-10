@@ -1,0 +1,9 @@
+
+<div class="row">
+  <div *ngFor="let product of products" class="product col-xs-12 col-sm-3">
+    <img [src]= product.image />
+    <h4>{{product.name}}</h4>
+    <p> {{product.price}}</p>
+    <a [routerLink]="['/products',product.id]"> Ver info </a>
+  </div>
+</div>

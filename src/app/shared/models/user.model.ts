@@ -3,8 +3,8 @@ export class User {
   password: string;
   name: string;
   lastname: string;
-  telephone: string;
+  telephone?: string;
   address: string;
   location: string;
-  role: string;
+  role?: string;
 }
