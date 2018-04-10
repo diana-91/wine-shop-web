@@ -17,6 +17,7 @@ import { UserService } from './shared/services/user.service';
 import { ProductService } from './shared/services/product.service';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { ProductItemComponent } from './components/product/product-item/product-item.component';
+import { SearchProductsPipe } from './pipe/search-products.pipe';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ProductItemComponent } from './components/product/product-item/product-
     SignupComponent,
     NavbarComponent,
     ProductListComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    SearchProductsPipe
   ],
   imports: [
     BrowserModule,
