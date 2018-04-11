@@ -18,7 +18,8 @@ import { ProductService } from './shared/services/product.service';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { ProductItemComponent } from './components/product/product-item/product-item.component';
 import { SearchProductsPipe } from './pipe/search-products.pipe';
-
+import { ShoppingCartComponent } from './components/shopping/shopping-cart/shopping-cart.component';
+import { ShoppingService } from './shared/services/shopping.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SearchProductsPipe } from './pipe/search-products.pipe';
     NavbarComponent,
     ProductListComponent,
     ProductItemComponent,
-    SearchProductsPipe
+    SearchProductsPipe,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { SearchProductsPipe } from './pipe/search-products.pipe';
   providers: [
     SessionService,
     UserService,
-    ProductService
+    ProductService,
+    ShoppingService
   ],
   bootstrap: [AppComponent]
 })
