@@ -21,6 +21,8 @@ import { SearchProductsPipe } from './pipe/search-products.pipe';
 import { ShoppingCartComponent } from './components/shopping/shopping-cart/shopping-cart.component';
 import { ShoppingService } from './shared/services/shopping.service';
 import { ProfileComponent } from './components/profile/profile.component';
+import { OrderComponent } from './components/order/order.component';
+import { OrderService } from './shared/services/order.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     ProductItemComponent,
     SearchProductsPipe,
     ShoppingCartComponent,
-    ProfileComponent
+    ProfileComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     SessionService,
     UserService,
     ProductService,
-    ShoppingService
+    ShoppingService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })
