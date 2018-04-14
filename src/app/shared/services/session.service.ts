@@ -11,7 +11,7 @@ const CURRENT_USER_KEY = 'currentUser';
 export class SessionService extends BaseApiService {
   private static readonly SESSION_API = `${BaseApiService.BASE_API}/session`;
 
-  private user: User;
+  user: User;
   private userSubject: Subject<User> = new Subject();
 
   constructor(private http: Http) {

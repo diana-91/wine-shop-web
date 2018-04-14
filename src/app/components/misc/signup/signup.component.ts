@@ -28,8 +28,7 @@ export class SignupComponent implements OnInit {
     this.userService.create(this.user).subscribe(
       (user) => {
         signupForm.reset();
-        this.router.navigate['/products'];
-      },
+        this.modalService._hideModal(1);      },
       (error) => {
         this.apiError = error.message;
       }

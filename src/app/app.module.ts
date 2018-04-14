@@ -20,7 +20,7 @@ import { ProductItemComponent } from './components/product/product-item/product-
 import { SearchProductsPipe } from './pipe/search-products.pipe';
 import { ShoppingCartComponent } from './components/shopping/shopping-cart/shopping-cart.component';
 import { ShoppingService } from './shared/services/shopping.service';
-import { ProfileComponent } from './components/profile/profile/profile.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [

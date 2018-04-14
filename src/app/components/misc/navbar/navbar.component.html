@@ -21,7 +21,7 @@
         <li *ngIf="!user">
           <app-login></app-login> |
           <!-- <a (click)="openModal(template)">Login</a> -->
-          <app-signup></app-signup>
+                <app-signup></app-signup>
           <!-- <a [routerLink]="['/signup']"> Regístrate </a> -->
         </li>
         <li class="dropdown" *ngIf="user">
@@ -30,7 +30,7 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a>Mi perfil</a>
+              <a [routerLink]="['/profile']">Mi perfil</a>
             </li>
             <li>
               <a (click)="onClickLogout()">Cerrar Sesión</a>

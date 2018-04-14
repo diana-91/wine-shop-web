@@ -1,0 +1,61 @@
+<div class="btn-profile">
+  <div class="btn-group-vertical btn-group-lg">
+    <button class="btn btn-danger btn-wine" type="button" (click)='edit=true'> Editar Perfil</button>
+    <button class="btn btn-danger btn-wine" type="button"> Ver pedidos </button>
+  </div>
+</div>
+
+
+<div>
+  <form (ngSubmit)="onSubmitUpdate(updateForm)" #updateForm="ngForm">
+
+    <div class="form-group" [class.has-error]="name.errors && name.touched">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-user"></i>
+        </span>
+        <input type="text" name="name" class="form-control" [(ngModel)]="user.name" #name="ngModel" [disabled]='!edit'>
+      </div>
+    </div>
+
+    <div class="form-group" [class.has-error]="lastname.errors && lastname.touched">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-user"></i>
+        </span>
+        <input type="text" name="lastname" class="form-control" [(ngModel)]="user.lastname" #lastname="ngModel" [disabled]='!edit'>
+      </div>
+    </div>
+
+    <div class="form-group" [class.has-error]="telephone.errors && telephone.touched">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-phone"></i>
+        </span>
+        <input type="text" name="telephone" class="form-control" [(ngModel)]="user.telephone" #telephone="ngModel" [disabled]='!edit'>
+      </div>
+    </div>
+
+    <div class="form-group" [class.has-error]="address.errors && address.touched">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-address-book"></i>
+        </span>
+        <input type="text" name="address" class="form-control" [(ngModel)]="user.address" #address="ngModel" [disabled]='!edit'>
+      </div>
+    </div>
+
+    <div class="form-group" [class.has-error]="location.errors && location.touched">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-location-arrow"></i>
+        </span>
+        <input type="text" name="location" class="form-control" [(ngModel)]="user.location" #location="ngModel" [disabled]='!edit'>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-block btn-primary" [disabled]="!updateForm.dirty" *ngIf='edit'>Entrar</button>
+    </div>
+  </form>
+</div>
