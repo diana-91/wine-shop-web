@@ -1,4 +1,5 @@
 export class Order {
+  id: string;
   _userId: string;
   _productId: Array<string> = new Array();
   date: string;

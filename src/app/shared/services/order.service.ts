@@ -17,6 +17,12 @@ export class OrderService extends BaseApiService {
       .catch(error => this.handleError(error))
   }
 
+  listUserOrders(id: string): Observable<Array<Order>> {
+    return this.http.get(`${OrderService.ORDER_API}/search/${id}`, BaseApiService.defaultOptions)
+      .map((res: Response) => res.json())
+      .catch(error => this.handleError(error))
+  }
+
   get(id: string): Observable<Order> {
     return this.http.get(`${OrderService.ORDER_API}/${id}`, BaseApiService.defaultOptions)
     .map((res: Response) => res.json())

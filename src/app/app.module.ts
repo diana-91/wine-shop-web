@@ -5,7 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 import { routes } from './app.routes';
 
 import { AppComponent } from './app.component';
@@ -43,7 +45,10 @@ import { OrderService } from './shared/services/order.service';
     FormsModule,
     HttpModule,
     AlertModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [
     SessionService,
