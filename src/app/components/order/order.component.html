@@ -1,4 +1,4 @@
-<mat-table [dataSource]=orders matSort (matSortChange)="sortData($event)">
+<mat-table [dataSource]=sortedData matSort (matSortChange)="sortData($event)">
   <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
   <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
   <ng-container matColumnDef="orderId">
@@ -15,10 +15,10 @@
   </ng-container>
   <ng-container matColumnDef="totalPrice" >
     <mat-header-cell *matHeaderCellDef mat-sort-header="totalPrice"> Importe </mat-header-cell>
-    <mat-cell *matCellDef="let order"> {{order.totalPrice}} </mat-cell>
+    <mat-cell *matCellDef="let order"> {{order.totalPrice | number:'1.2-2'}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-    <mat-cell *matCellDef="let order"><button type="button">Ver</button></mat-cell>
+    <mat-cell *matCellDef="let order"><a [routerLink]="['/orders',order.id]"> Ver </a></mat-cell>
   </ng-container>
 </mat-table>

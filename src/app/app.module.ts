@@ -25,6 +25,7 @@ import { ShoppingService } from './shared/services/shopping.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { OrderComponent } from './components/order/order.component';
 import { OrderService } from './shared/services/order.service';
+import { OrderItemComponent } from './components/order/order-item/order-item.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { OrderService } from './shared/services/order.service';
     SearchProductsPipe,
     ShoppingCartComponent,
     ProfileComponent,
-    OrderComponent
+    OrderComponent,
+    OrderItemComponent
   ],
   imports: [
     BrowserModule,

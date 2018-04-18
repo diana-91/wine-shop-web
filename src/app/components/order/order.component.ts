@@ -18,7 +18,7 @@ export class OrderComponent implements OnInit {
 
   orders: Order[]=[];
   columnsToDisplay = ['orderId','date','state','totalPrice','actions'];
-  private sortedData;
+  private sortedData=[];
   user: User = this.sessionService.user;
 
 
@@ -29,8 +29,10 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     this.orderService.listUserOrders(this.user.id)
-      .subscribe((orders) => this.orders = orders);
-    this.sortedData = this.orders.slice();
+      .subscribe((orders) => {
+        this.orders = orders;
+        this.sortedData = this.orders.slice();
+      });
   }
 
   sortData(sort: Sort) {
@@ -50,6 +52,8 @@ export class OrderComponent implements OnInit {
       }
     });
   }
+
+
 }
 function compare(a, b, isAsc) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);

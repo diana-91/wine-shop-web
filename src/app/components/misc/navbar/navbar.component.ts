@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   private user: User;
   private userSubscription: Subscription;
+  private numberProducts : number = 0;
 
   constructor(
     private router: Router,
@@ -32,6 +33,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   onClickLogout() {
     this.sessionService.logout()
       .subscribe(() => {
+        localStorage.clear();
         this.router.navigate(['/products']);
       });
   }

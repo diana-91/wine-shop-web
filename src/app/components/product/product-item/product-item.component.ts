@@ -4,7 +4,8 @@ import { ProductService } from '../../../shared/services/product.service';
 import { BaseApiService } from '../../../shared/services/base-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from '../../../shared/services/session.service';
-import { User } from '../../../shared/models/user.model'
+import { User } from '../../../shared/models/user.model';
+import { ShoppingCart } from '../../../shared/models/shopping-cart.model';
 
 @Component({
   selector: 'app-product-item',
@@ -14,6 +15,8 @@ import { User } from '../../../shared/models/user.model'
 export class ProductItemComponent implements OnInit {
   product: Product = new Product();
   user: User = new User();
+  cartProducts: Array<ShoppingCart> = [];
+  currentProduct: ShoppingCart = new ShoppingCart();
 
   constructor(
     private productService: ProductService,
@@ -27,16 +30,25 @@ export class ProductItemComponent implements OnInit {
       .get(this.routes.snapshot.params['id'])
       .subscribe(p => {
         this.product = p;
-      })
+      });
+      if(localStorage.getItem('cart')!= null){
+        this.cartProducts = JSON.parse(localStorage.getItem('cart'));
+      }
+
   }
 
   onSubmitOrder(orderForm) {
-    this.sessionService.authenticate(this.user).subscribe(
-      (user => {
-        orderForm.reset();
-        this.router.navigate(['/product'])
-      })
-    )
+    this.currentProduct._productId = this.product.id;
+    this.currentProduct.name = this.product.name;
+    this.currentProduct.image = this.product.image;
+    this.currentProduct.category = this.product.category;
+    this.currentProduct.price = this.product.price;
+    this.currentProduct.amount = parseInt(orderForm.amount.value);
+
+    this.cartProducts.push(this.currentProduct);
+    this.router.navigate(['/products']);
+
+    localStorage.setItem('cart', JSON.stringify(this.cartProducts));
   }
 
 }

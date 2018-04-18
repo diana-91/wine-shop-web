@@ -24,6 +24,11 @@
                 <app-signup></app-signup>
           <!-- <a [routerLink]="['/signup']"> Regístrate </a> -->
         </li>
+        <li *ngIf="user">
+          <span class="badge badge-success">{{numberProducts}}</span>
+          <a [routerLink]="['/shoppingCart']"> <span class="glyphicon glyphicon-shopping-cart"></span> </a>
+
+        </li>
         <li class="dropdown" *ngIf="user">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.email }}
             <span class="caret"></span>
@@ -36,8 +41,9 @@
               <a (click)="onClickLogout()">Cerrar Sesión</a>
             </li>
           </ul>
-          <app-shopping-cart></app-shopping-cart>
+
         </li>
+
       </ul>
     </div>
 

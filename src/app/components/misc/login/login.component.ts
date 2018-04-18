@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     this.sessionService.authenticate(this.user).subscribe(
       (user) => {
         loginForm.reset();
+        localStorage.setItem('cart','[]');
         this.modalService._hideModal(1);
       },
       (error) => {

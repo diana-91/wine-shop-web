@@ -1,7 +1,7 @@
 export class Order {
   id: string;
-  _userId: string;
-  _productId: Array<string> = new Array();
+  _userId: any;
+  _productId: Array<any> = new Array();
   date: string;
   amount: Array<number> = new Array();
   state: string;

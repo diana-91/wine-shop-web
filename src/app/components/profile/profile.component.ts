@@ -31,9 +31,11 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmitUpdate(updateForm){
-    this.usersService.edit(this.user).subscribe( updateForm => alert('Su perfil ha sido actualizado'))
+    this.usersService.edit(this.user).subscribe(
+      updateForm => alert('Su perfil ha sido actualizado'));
+    this.edit=false;
   }
 
-  
+
 
 }
