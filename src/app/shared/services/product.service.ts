@@ -3,13 +3,18 @@ import { BaseApiService } from './base-api.service';
 import { Injectable } from '@angular/core';
 import { environment } from './../../../environments/environment';
 import { Http, Headers, RequestOptions, Response, RequestMethod } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable, Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class ProductService extends BaseApiService {
    private static readonly PRODUCTS_API = `${BaseApiService.BASE_API}/products`;
+   private productSubject: Subject<any> = new Subject();
+   private productsList: Array<any> = [];
 
-  constructor(private http: Http ) { super() }
+  constructor(private http: Http ) {
+    super()
+    this.notifyProductsListChanges(null);
+  }
 
   list(): Observable<Array<Product>> {
     return this.http.get(ProductService.PRODUCTS_API, BaseApiService.defaultOptions)
@@ -21,6 +26,34 @@ export class ProductService extends BaseApiService {
     return this.http.get(`${ProductService.PRODUCTS_API}/${id}`, BaseApiService.defaultOptions)
     .map((res: Response) => res.json())
     .catch(error => this.handleError(error))
+  }
+
+  addProductToCart(product) {
+    if(product) {
+      this.productsList.push(product);
+      console.log('Esto vale productList')
+      console.log(this.productsList)
+      return this.notifyProductsListChanges(product);
+    }
+    return console.log('No existe el producto')
+  }
+
+  removeProductFromCart(product) {
+    if(product) {
+      this.productsList.splice(0 ,1);
+      console.log('Esto vale productList')
+      console.log(this.productsList)
+      return this.notifyProductsListChanges(null);
+    }
+    return console.log('No existe el producto')
+  }
+
+  private notifyProductsListChanges(product) {
+    this.productSubject.next(this.productsList);
+  }
+
+  onProductListChanges(): Observable<any> {
+    return this.productSubject.asObservable();
   }
 
 }

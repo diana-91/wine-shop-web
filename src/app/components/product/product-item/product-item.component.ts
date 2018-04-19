@@ -45,6 +45,7 @@ export class ProductItemComponent implements OnInit {
     this.currentProduct.price = this.product.price;
     this.currentProduct.amount = parseInt(orderForm.amount.value);
 
+    this.productService.addProductToCart(this.currentProduct);
     this.cartProducts.push(this.currentProduct);
     this.router.navigate(['/products']);
 

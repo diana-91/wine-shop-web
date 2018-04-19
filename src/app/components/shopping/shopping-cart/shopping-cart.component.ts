@@ -5,6 +5,7 @@ import { OrderService } from '../../../shared/services/order.service';
 import { SessionService } from '../../../shared/services/session.service';
 import { Router } from '@angular/router';
 import { ShoppingService } from '../../../shared/services/shopping.service';
+import { ProductService } from '../../../shared/services/product.service';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class ShoppingCartComponent implements OnInit {
     private orderService: OrderService,
     private sessionService: SessionService,
     private router: Router,
-    private shoppingService: ShoppingService
+    private shoppingService: ShoppingService,
+    private productService : ProductService
   ) { }
 
   ngOnInit() {
@@ -36,7 +38,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   changeTotal(){
-    if(this.currentProduct.length>0){
+    if(this.currentProduct.length > 0){
       let price=0;
       for(let i= 0; i<this.currentProduct.length; i++){
         price += this.currentProduct[i].price *this.currentProduct[i].amount;
@@ -70,9 +72,10 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   cartDeleteProduct( index: number){
-    this.currentProduct=this.shoppingService.delete(index);
+    console.log(index);
+    this.currentProduct = this.shoppingService.delete(index);
+    this.productService.removeProductFromCart(this.currentProduct);
     this.changeTotal();
-    console.log(this.currentProduct);
   }
 
 }
