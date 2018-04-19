@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
-    console.log(template)
+
     this.modalRef = this.modalService.show(template);
   }
 

@@ -11,6 +11,9 @@ export class ShoppingService {
   delete(index: number): Array<ShoppingCart> {
     let cart = JSON.parse(localStorage.getItem('cart'));
     cart.splice(index, 1);
+    if(index === 0) {
+      localStorage.setItem('cart', '[]')
+    }
     return cart;
  }
 

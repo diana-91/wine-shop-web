@@ -31,7 +31,6 @@ export class OrderService extends BaseApiService {
   }
 
   create(order: Order): Observable<Order> {
-    console.log(OrderService.ORDER_API, JSON.parse(JSON.stringify(order)))
     return this.http.post(OrderService.ORDER_API, JSON.parse(JSON.stringify(order)), new RequestOptions({ withCredentials: true }))
       .map((res: Response) => res.json())
       .catch(error => this.handleError(error));

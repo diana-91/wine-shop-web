@@ -31,21 +31,15 @@ export class ProductService extends BaseApiService {
   addProductToCart(product) {
     if(product) {
       this.productsList.push(product);
-      console.log('Esto vale productList')
-      console.log(this.productsList)
       return this.notifyProductsListChanges(product);
     }
-    return console.log('No existe el producto')
   }
 
   removeProductFromCart(product) {
     if(product) {
       this.productsList.splice(0 ,1);
-      console.log('Esto vale productList')
-      console.log(this.productsList)
       return this.notifyProductsListChanges(null);
     }
-    return console.log('No existe el producto')
   }
 
   private notifyProductsListChanges(product) {

@@ -72,7 +72,6 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   cartDeleteProduct( index: number){
-    console.log(index);
     this.currentProduct = this.shoppingService.delete(index);
     this.productService.removeProductFromCart(this.currentProduct);
     this.changeTotal();
