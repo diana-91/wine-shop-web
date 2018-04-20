@@ -14,7 +14,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
-  private user: User;
+  user: User;
   private userSubscription: Subscription;
   productsSubcription: Subscription;
   private productsList : Array <any>;

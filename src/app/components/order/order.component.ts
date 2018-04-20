@@ -18,7 +18,7 @@ export class OrderComponent implements OnInit {
 
   orders: Order[]=[];
   columnsToDisplay = ['orderId','date','state','totalPrice','actions'];
-  private sortedData=[];
+  sortedData=[];
   user: User = this.sessionService.user;
 
 

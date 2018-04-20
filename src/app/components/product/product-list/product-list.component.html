@@ -1,13 +1,13 @@
 
 
-  <div class="col-sm-12">
+  <div class="col-sm-12" *ngIf="products">
     <div class="input-group">
       <input [(ngModel)]="searchProductsName" type="text" id="search" placeholder="Search product" name="search">
       <i class="glyphicon glyphicon-search"></i>
     </div>
   </div>
 
-<div class="row">
+<div class="row" *ngIf="products">
   <div *ngFor="let product of products | searchProducts:'name':searchProductsName" class="product col-xs-12 col-sm-3">
     <img [src]= product.image />
     <h4>{{product.name}}</h4>
