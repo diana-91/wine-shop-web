@@ -4,6 +4,7 @@ import { User } from './../../../shared/models/user.model';
 import { SessionService } from './../../../shared/services/session.service';
 import { ProductService } from '../../../shared/services/product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { UserService } from '../../../shared/services/user.service';
 
 
 
@@ -14,7 +15,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
-  user: User;
+  user: User = this.sessionService.user;
+  currentUser: User;
   private userSubscription: Subscription;
   productsSubcription: Subscription;
   private productsList : Array <any>;
@@ -24,17 +26,27 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private router: Router,
     private sessionService: SessionService,
     private productService: ProductService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
-    this.user = this.sessionService.getUser();
+    console.log(this.user)
+
     this.userSubscription = this.sessionService.onUserChanges()
-     .subscribe(user => this.user = user);
+     .subscribe(user =>{
+       this.user = user;
+       if(this.user != null){
+         this.userService.get(this.user.id).subscribe(user => this.currentUser = user);
+       }
+     });
+
+
     this.productsSubcription = this.productService.onProductListChanges()
       .subscribe(list => {
         this.productsList = list;
         this.numberProducts = this.productsList.length;
       });
+
   }
 
   ngOnDestroy() {
@@ -46,6 +58,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.sessionService.logout()
       .subscribe(() => {
         localStorage.clear();
+        this.currentUser=null;
         this.router.navigate(['/products']);
       });
   }

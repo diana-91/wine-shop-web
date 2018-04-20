@@ -24,10 +24,11 @@
           <app-signup></app-signup>
           <!-- <a [routerLink]="['/signup']"> Regístrate </a> -->
         </li>
-        <li *ngIf="user">
-          <span class="badge badge-success">{{numberProducts}}</span>
-          <a [routerLink]="['/shoppingCart']"> <span class="glyphicon glyphicon-shopping-cart"></span> </a>
-
+        <li *ngIf="currentUser">
+          <div *ngIf="currentUser.role == 'GUEST'">
+            <span class="badge badge-success">{{numberProducts}}</span>
+            <a [routerLink]="['/shoppingCart']"> <span class="glyphicon glyphicon-shopping-cart"></span> </a>
+          </div>
         </li>
         <li class="dropdown" *ngIf="user">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.email }}
