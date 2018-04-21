@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseApi: 'https://wine-shop-api.herokuapp.com'
+  baseApi: 'https://vinosmanchegos.herokuapp.com'
 };
