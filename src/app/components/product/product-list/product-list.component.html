@@ -7,10 +7,12 @@
       <input class="form-control" [(ngModel)]="searchProductsName" type="text" id="search" placeholder="Search product" name="search">
       <span class="glyphicon glyphicon-search input-group-addon"></span>
     </div>
+    <div class="col-md-6"></div>
+    <div *ngIf="currentUser" class="col-md-3 btn-new">
+      <button class="btn-danger btn-wine btn-lg" *ngIf="currentUser.role == 'ADMIN'" [routerLink]="['/products/newProduct']"> Nuevo </button>
+    </div>
   </div>
-  <div *ngIf="currentUser">
-    <button *ngIf="currentUser.role == 'ADMIN'" [routerLink]="['/products/newProduct']"> Nuevo </button>
-  </div>
+
 
   <div class="row" *ngIf="products">
     <div *ngFor="let product of products | searchProducts:'name':searchProductsName" class="product col-xs-12 col-md-4">

@@ -16,10 +16,12 @@
   padding: 0;
   margin-top: 5%;
   width: 100%;
-
-
 }
 
+.btn-wine{
+  background-color: #d9534f;
+  color: white;
+}
 
 .input-group-addon {
   background-color: black;
