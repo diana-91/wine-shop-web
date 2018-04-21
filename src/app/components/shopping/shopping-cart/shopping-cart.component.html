@@ -1,37 +1,50 @@
-<mat-table *ngIf="currentProduct.length!=0" [dataSource]=currentProduct>
-  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-  <mat-row *matRowDef="let myRowData; columns: columnsToDisplay; "></mat-row>
-  <ng-container matColumnDef="image">
-    <mat-header-cell *matHeaderCellDef> Imagen </mat-header-cell>
-    <mat-cell *matCellDef="let product"> <img id="imageProduct" [src]="product.image" /> </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef> Producto </mat-header-cell>
-    <mat-cell *matCellDef="let product"> {{product.name}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="category" >
-    <mat-header-cell *matHeaderCellDef> Categoría </mat-header-cell>
-    <mat-cell *matCellDef="let product"> {{product.category}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="amount" >
-    <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
-    <mat-cell *matCellDef="let product">
-      <input id="amountInput" matInput type="number" step="1" min="1" [(ngModel)]="product.amount" (ngModelChange)="changeTotal()" value="product.amount" >
-     </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="price" >
-    <mat-header-cell *matHeaderCellDef> Precio/unidad </mat-header-cell>
-    <mat-cell *matCellDef="let product"> {{product.price}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="totalPrice" >
-    <mat-header-cell *matHeaderCellDef> Precio total </mat-header-cell>
-    <mat-cell *matCellDef="let product"> {{product.price * product.amount | number:'1.2-2'}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="actions">
-    <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-    <mat-cell *matCellDef="let product; let i = index;"><button (click)="cartDeleteProduct(i)"> Borrar </button></mat-cell>
-  </ng-container>
-</mat-table>
+<div class="container">
+  <div class="row">
+  <div class="col-md-1"></div>
+  <mat-table class="col-md-10" *ngIf="currentProduct.length!=0" [dataSource]=currentProduct>
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let myRowData; columns: columnsToDisplay; "></mat-row>
+    <ng-container matColumnDef="image">
+      <mat-header-cell *matHeaderCellDef> Imagen </mat-header-cell>
+      <mat-cell *matCellDef="let product"> <img id="imageProduct" [src]="product.image" /> </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Producto </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{product.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="category" >
+      <mat-header-cell *matHeaderCellDef> Categoría </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{product.category}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="amount" >
+      <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
+      <mat-cell *matCellDef="let product">
+        <input id="amountInput" matInput type="number" step="1" min="1" [(ngModel)]="product.amount" (ngModelChange)="changeTotal()" value="product.amount" >
+       </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="price" >
+      <mat-header-cell *matHeaderCellDef> Precio/unidad </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{product.price}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="totalPrice" >
+      <mat-header-cell *matHeaderCellDef> Precio total </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{product.price * product.amount | number:'1.2-2'}} </mat-cell>
+    </ng-container>
+    <ng-container class="" matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let product; let i = index;"><button class="btn btn-danger btn-wine"(click)="cartDeleteProduct(i)"> Borrar </button></mat-cell>
+    </ng-container>
+  </mat-table>
+  <div class="col-md-1"></div>
+  </div>
+  <div class="row">
+  <div class="col-md-8"></div>
+  <div class="col-md-4">
 
-<p> Precio Total: {{totalPrice | number:'1.2-2'}}</p>
-<button (click)="sendOrder()"[disabled]="currentProduct.length==0"> Comprar </button>
+    <h4> Precio Total: <span class="totalprice"> {{totalPrice | number:'1.2-2'}} €</span> </h4>
+    <button (click)="sendOrder()" class="btn btn-danger btn-wine btn-lg" [disabled]="currentProduct.length==0"> Comprar </button>
+
+  </div>
+
+</div>
+</div>
