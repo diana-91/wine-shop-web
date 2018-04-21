@@ -1,4 +1,11 @@
 .imageProduct img{
-  height: 250px;
-  width: 250px;
+  height: 300px;
+}
+
+.submitOrder{
+  padding-right: 5%;
+  padding-top: 5%;
+}
+.row{
+  padding: 8%;
 }

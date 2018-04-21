@@ -24,7 +24,7 @@
           <app-signup></app-signup>
           <!-- <a [routerLink]="['/signup']"> Regístrate </a> -->
         </li>
-        <li *ngIf="currentUser">
+        <li class="cart" *ngIf="currentUser">
           <div *ngIf="currentUser.role == 'GUEST'">
             <span class="badge badge-success">{{numberProducts}}</span>
             <a [routerLink]="['/shoppingCart']"> <span class="glyphicon glyphicon-shopping-cart"></span> </a>

@@ -1,12 +1,16 @@
-<div class="btn-profile">
-  <div class="btn-group-vertical btn-group-lg">
-    <button class="btn btn-danger btn-wine" type="button" (click)='edit=true'> Editar Perfil</button>
-    <button class="btn btn-danger btn-wine" type="button"> Ver pedidos </button>
+<div class="container">
+  <div class="row">
+
+
+  <div class="btn-profile col-md-2 btn-group btn-group-lg">
+
+      <button class="btn btn-danger btn-wine" type="button" (click)='profile=true;edit=true'> Editar Perfil</button>
+      <button class="btn btn-danger btn-wine" type="button" (click)='profile=false; edit=false'> Ver pedidos </button>
+
   </div>
-</div>
 
 
-<div>
+<div *ngIf="profile" class="col-md-10">
   <form (ngSubmit)="onSubmitUpdate(updateForm)" #updateForm="ngForm">
 
     <div class="form-group" [class.has-error]="name.errors && name.touched">
@@ -60,4 +64,9 @@
   </form>
 </div>
 
-<app-order></app-order>
+
+
+<app-order *ngIf="!profile"></app-order>
+</div>
+
+</div>

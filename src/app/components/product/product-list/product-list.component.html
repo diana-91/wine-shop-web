@@ -1,17 +1,23 @@
 
+<div class="container">
+  <div class="row" *ngIf="products">
+    <div class="col-md-1"></div>
+    <div class="input-group col-md-2">
 
-  <div class="col-sm-12" *ngIf="products">
-    <div class="input-group">
-      <input [(ngModel)]="searchProductsName" type="text" id="search" placeholder="Search product" name="search">
-      <i class="glyphicon glyphicon-search"></i>
+      <input class="form-control" [(ngModel)]="searchProductsName" type="text" id="search" placeholder="Search product" name="search">
+      <span class="glyphicon glyphicon-search input-group-addon"></span>
     </div>
   </div>
+  <div *ngIf="currentUser">
+    <button *ngIf="currentUser.role == 'ADMIN'" [routerLink]="['/products/newProduct']"> Nuevo </button>
+  </div>
 
-<div class="row" *ngIf="products">
-  <div *ngFor="let product of products | searchProducts:'name':searchProductsName" class="product col-xs-12 col-sm-3">
-    <img [src]= product.image />
-    <h4>{{product.name}}</h4>
-    <p> {{product.price}}</p>
-    <a [routerLink]="['/products',product.id]"> Ver info </a>
+  <div class="row" *ngIf="products">
+    <div *ngFor="let product of products | searchProducts:'name':searchProductsName" class="product col-xs-12 col-md-4">
+      <img [src]= product.image />
+      <h3>{{product.name}}</h3>
+      <h4> {{product.price | number:'1.2-2'}} €</h4>
+      <a [routerLink]="['/products',product.id]"> Ver info </a>
+    </div>
   </div>
 </div>

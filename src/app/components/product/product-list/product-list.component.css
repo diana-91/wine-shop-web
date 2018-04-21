@@ -1,13 +1,27 @@
 .product {
-  margin: 10px;
+  margin-top: 5%;
   text-align: center;
 }
 
-.product p {
+.product h4 {
   color: red;
 }
 
 .product img {
-  height: 250px;
-  width: 250px;
+  height: 300px;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+  margin-top: 5%;
+  width: 100%;
+
+
+}
+
+
+.input-group-addon {
+  background-color: black;
+  color: #d9534f;
 }

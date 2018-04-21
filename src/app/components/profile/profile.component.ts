@@ -3,6 +3,8 @@ import { User } from './../../shared/models/user.model';
 import { UserService} from './../../shared/services/user.service';
 import { SessionService } from './../../shared/services/session.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-profile',
@@ -14,14 +16,21 @@ export class ProfileComponent implements OnInit {
   currentUser: User;
 
   edit: boolean;
+  profile : boolean;
 
   constructor(
     private sessionService: SessionService,
     private routes: ActivatedRoute,
-    private usersService: UserService) { }
+    private usersService: UserService,
+    public toastr: ToastsManager,
+    vcr: ViewContainerRef
+  ) {
+    this.toastr.setRootViewContainerRef(vcr);
+   }
 
   ngOnInit() {
     this.edit=false;
+    this.profile=true;
     this.routes
       .params
       .subscribe( params => {
@@ -32,10 +41,16 @@ export class ProfileComponent implements OnInit {
 
   onSubmitUpdate(updateForm){
     this.usersService.edit(this.user).subscribe(
-      updateForm => alert('Su perfil ha sido actualizado'));
+      updateForm => this.showSuccess());
     this.edit=false;
   }
 
+  showSuccess() {
+    this.toastr.success('Perfil actualizado.');
+  }
 
+  showError(){
+    this.toastr.error('Error al actualizar su perfil.')
+  }
 
 }

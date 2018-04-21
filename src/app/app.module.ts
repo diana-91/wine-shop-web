@@ -8,7 +8,9 @@ import { ModalModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { SelectModule } from 'ng2-select';
 import { routes } from './app.routes';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/misc/login/login.component';
@@ -26,6 +28,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { OrderComponent } from './components/order/order.component';
 import { OrderService } from './shared/services/order.service';
 import { OrderItemComponent } from './components/order/order-item/order-item.component';
+import { NewProductComponent } from './components/product/new-product/new-product.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { OrderItemComponent } from './components/order/order-item/order-item.com
     ShoppingCartComponent,
     ProfileComponent,
     OrderComponent,
-    OrderItemComponent
+    OrderItemComponent,
+    NewProductComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,9 @@ import { OrderItemComponent } from './components/order/order-item/order-item.com
     ModalModule.forRoot(),
     BrowserAnimationsModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    SelectModule,
+    ToastModule.forRoot()
   ],
   providers: [
     SessionService,

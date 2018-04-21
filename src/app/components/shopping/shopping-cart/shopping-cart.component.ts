@@ -6,6 +6,8 @@ import { SessionService } from '../../../shared/services/session.service';
 import { Router } from '@angular/router';
 import { ShoppingService } from '../../../shared/services/shopping.service';
 import { ProductService } from '../../../shared/services/product.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ViewContainerRef } from '@angular/core';
 
 
 @Component({
@@ -26,8 +28,12 @@ export class ShoppingCartComponent implements OnInit {
     private sessionService: SessionService,
     private router: Router,
     private shoppingService: ShoppingService,
-    private productService : ProductService
-  ) { }
+    private productService : ProductService,
+    public toastr: ToastsManager,
+    vcr: ViewContainerRef
+  ) {
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
     if(localStorage.getItem('cart')!=null){
@@ -61,8 +67,11 @@ export class ShoppingCartComponent implements OnInit {
     this.orderService.create(this.order).subscribe(
       (order) => {
         localStorage.clear();
-        this.router.navigate(['/products']);
-        alert('¡Compra realizada con éxito! En unos días recibirás su pedido');
+        this.showSuccess();
+        setTimeout(() => {
+          this.router.navigate(['/products']);
+        }, 3000);
+
 
       },
       (error) => {
@@ -75,6 +84,14 @@ export class ShoppingCartComponent implements OnInit {
     this.currentProduct = this.shoppingService.delete(index);
     this.productService.removeProductFromCart(this.currentProduct);
     this.changeTotal();
+  }
+
+  showSuccess() {
+    this.toastr.success('En unos días recibirás su pedido!', '¡Muchas gracias por su compra!');
+  }
+
+  showError(){
+    this.toastr.error('Inténtelo de nuevo.','Error en la compra.')
   }
 
 }

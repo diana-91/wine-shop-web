@@ -1,0 +1,9 @@
+.container {
+  /*background-image: url('../assets/public/images/background.jpg') ;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.5;*/
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}

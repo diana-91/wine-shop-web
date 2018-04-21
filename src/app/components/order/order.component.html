@@ -1,4 +1,4 @@
-<mat-table [dataSource]=sortedData matSort (matSortChange)="sortData($event)">
+<mat-table class="col-md-10" [dataSource]=sortedData matSort (matSortChange)="sortData($event)">
   <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
   <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
   <ng-container matColumnDef="orderId">

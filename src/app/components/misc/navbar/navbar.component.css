@@ -1,0 +1,30 @@
+.navbar {
+  margin: 0;
+}
+
+.navbar ul {
+  padding-top: 2%;
+}
+
+.navbar-default, .dropdown ul{
+  background-color: black;
+  color: #d9534f ;
+}
+
+.dropdown li a {
+  color: #d9534f ;
+}
+.navbar-default span, .navbar-nav {
+  color: #d9534f ;
+}
+
+.dropdown-toggle {
+  padding: 0 0 0 8px;
+  color: #d9534f;
+}
+
+
+
+/*.cart {
+  margin-top: 8%;
+}*/

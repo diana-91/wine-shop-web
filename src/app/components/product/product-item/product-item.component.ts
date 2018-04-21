@@ -6,6 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from '../../../shared/services/session.service';
 import { User } from '../../../shared/models/user.model';
 import { ShoppingCart } from '../../../shared/models/shopping-cart.model';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ViewContainerRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-product-item',
@@ -22,8 +25,12 @@ export class ProductItemComponent implements OnInit {
     private productService: ProductService,
     private router: Router,
     private routes:  ActivatedRoute,
-    private sessionService: SessionService
-  ) { }
+    private sessionService: SessionService,
+    public toastr: ToastsManager,
+    vcr: ViewContainerRef
+  ) {
+    this.toastr.setRootViewContainerRef(vcr);
+   }
 
   ngOnInit() {
     this.productService
@@ -38,6 +45,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   onSubmitOrder(orderForm) {
+    this.showSuccess();
     this.currentProduct._productId = this.product.id;
     this.currentProduct.name = this.product.name;
     this.currentProduct.image = this.product.image;
@@ -47,9 +55,17 @@ export class ProductItemComponent implements OnInit {
 
     this.productService.addProductToCart(this.currentProduct);
     this.cartProducts.push(this.currentProduct);
-    this.router.navigate(['/products']);
-
     localStorage.setItem('cart', JSON.stringify(this.cartProducts));
+    setTimeout(() => {
+      this.router.navigate(['/products']);
+    }, 1000);
+
   }
+
+  showSuccess() {
+    this.toastr.success('Se ha añadido el producto a su carrito');
+  }
+
+
 
 }

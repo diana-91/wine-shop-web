@@ -1,0 +1,69 @@
+<form (ngSubmit)="onSubmitNewProduct(newProductForm)" #newProductForm="ngForm">
+  <div class="form-group" [class.has-error]="name.errors && name.touched">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-user"></i>
+      </span>
+    <input type="text" name="name" class="form-control" placeholder="Name" [(ngModel)]="product.name" #name="ngModel" required>
+  </div>
+    <label class="control-label" *ngIf="name.errors && name.touched">
+      <ul>
+        <li *ngIf="name.errors.required">El campo es obligatorio</li>
+      </ul>
+    </label>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-lock"></i>
+      </span>
+      <textarea name="description" [(ngModel)]='product.description' rows="10" cols="83" > </textarea>
+    </div>
+
+  </div>
+
+  <div class="form-group" [class.has-error]="name.errors && name.touched">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-user"></i>
+      </span>
+      <ng-select name="category" [(ngModel)]='currentCategory'
+              [allowClear]="false"
+              [items]="category"
+              (data)="refreshValue($event)"
+              placeholder="Categoría"
+              >
+  </ng-select>
+    </div>
+  </div>
+
+  <div class="form-group" >
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-user"></i>
+      </span>
+      <input type="number" min=0 name="price" class="form-control" placeholder="Precio.." [(ngModel)]="product.price" #price="ngModel" required>
+    </div>
+
+  </div>
+
+  <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-picture"></i>
+          </span>
+          <input type="file" name="image" class="form-control" #image>
+        </div>
+      </div>
+
+  <div class="form-group" class="has-error" *ngIf="apiError">
+    <label class="control-label">
+      {{ apiError }}
+    </label>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-block btn-primary" [disabled]="!newProductForm.valid">Entrar</button>
+  </div>
+</form>

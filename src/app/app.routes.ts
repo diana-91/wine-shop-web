@@ -6,6 +6,8 @@ import { ProductItemComponent } from './components/product/product-item/product-
 import { ProfileComponent} from './components/profile/profile.component';
 import { OrderItemComponent } from './components/order/order-item/order-item.component';
 import { ShoppingCartComponent } from './components/shopping/shopping-cart/shopping-cart.component';
+import { NewProductComponent } from './components/product/new-product/new-product.component';
+
 
 export const routes: Routes = [
 
@@ -14,6 +16,8 @@ export const routes: Routes = [
   {
     path: 'products',
     children: [
+      { path: 'newProduct',
+      component: NewProductComponent},
       { path:':id',
       component: ProductItemComponent }
     ]

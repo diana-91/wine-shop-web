@@ -28,6 +28,12 @@ export class ProductService extends BaseApiService {
     .catch(error => this.handleError(error))
   }
 
+  create(product: Product): Observable<Product> {
+    return this.http.post(ProductService.PRODUCTS_API, product.asFormData(), new RequestOptions({ withCredentials: true }))
+      .map(res => res.json())
+      .catch(error => this.handleError(error));
+  }
+
   addProductToCart(product) {
     if(product) {
       this.productsList.push(product);
@@ -49,5 +55,7 @@ export class ProductService extends BaseApiService {
   onProductListChanges(): Observable<any> {
     return this.productSubject.asObservable();
   }
+
+
 
 }

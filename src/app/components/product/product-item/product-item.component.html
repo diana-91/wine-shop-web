@@ -1,20 +1,26 @@
 <div *ngIf="product">
-  <div class="img-thumbnail imageProduct left">
-    <img [src]="product.image">
-  </div>
+  <div class="row">
 
-  <div>
-    <h4>{{product.name}}</h4>
-    <p>{{product.description}}</p>
-  </div>
+    <div class="imageProduct col-md-5">
+      <img [src]="product.image">
+    </div>
 
-  <div class="right">
-    <form (ngSubmit)="onSubmitOrder(orderForm)" #orderForm>
-      <label>Cantidad:</label>
-      <input type="number" name="amount" step="1" min="1" value="1" class="form-control" >
-      <div class="form-actions">
-        <button type="submit" class="btn btn-block btn-primary"> Añadir Carrito </button>
+    <div class="col-md-7">
+      <h2>{{product.name}}</h2>
+      <h3>{{product.category}}</h3>
+      <p>{{product.description}}</p>
+      <h3> {{product.price | number:'1.2-2'}} €</h3>
+
+      <div class="submitOrder col-md-4 form-group ">
+        <form (ngSubmit)="onSubmitOrder(orderForm)" #orderForm>
+          <label>Cantidad:</label>
+          <input type="number" class="form-control" name="amount" step="1" min="1" value="1" class="form-control" >
+          <div class="form-actions">
+            <button type="submit" class="btn btn-block btn-primary"> Añadir Carrito </button>
+          </div>
+        </form>
       </div>
-    </form>
-  </div>
+    </div>
+    </div>
+
 </div>
